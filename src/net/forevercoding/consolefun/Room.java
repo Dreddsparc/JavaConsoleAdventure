@@ -28,10 +28,22 @@ public class Room {
     //endregion
 
     //region Constructors
+    // Basic Default Constructor
     public Room(){
 
     }
-
+    // Just room number and description needed
+    public Room(Integer roomNumber, String roomDescription) {
+        this.roomNumber = roomNumber;
+        this.roomDescription = roomDescription;
+    }
+    // room number, description, and exits needed
+    public Room(Integer roomNumber, String roomDescription, Map<String, Integer> availExits) {
+        this.roomNumber = roomNumber;
+        this.roomDescription = roomDescription;
+        this.availExits = availExits;
+    }
+    // room number, description, exits, and loot needed
     public Room(Integer roomNumber, String roomDescription, Map<String, Integer> availExits, Map<LootItem, Integer> roomLoot) {
         this.roomNumber = roomNumber;
         this.roomDescription = roomDescription;

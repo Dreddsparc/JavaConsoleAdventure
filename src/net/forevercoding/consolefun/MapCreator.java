@@ -1,6 +1,8 @@
 package net.forevercoding.consolefun;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MapCreator extends Room{
@@ -14,14 +16,20 @@ public class MapCreator extends Room{
 
 
         // basic testing of room creation
-        Room room1 = new Room();
-        room1.setRoomDescription("This is a plain white room");
-        room1.setRoomNumber(1);
-        exits.put("south", 2);
-        exits.put("east", 3);
-        room1.setAvailExits(exits);
-        System.out.println(room1.getRoomDescription());
-        System.out.println(room1.getAvailExits());
+        List<Room> rooms = new ArrayList<>();
+
+        Room room1 = new Room(1, "This is a plain white room",
+                new HashMap<String, Integer>(){{put("east", 2);}});
+        Room room2 = new Room(2, "You find yourself in a dimly lit room with crazy looking paintings on the wall.",
+                new HashMap<String, Integer>(){{put("south", 1);}});
+
+        rooms.add(room1);
+        rooms.add(room2);
+
+        for (Room room : rooms) {
+            System.out.println(room.getRoomDescription());
+            System.out.println(room.getAvailExits());
+        }
 
     }
 }
