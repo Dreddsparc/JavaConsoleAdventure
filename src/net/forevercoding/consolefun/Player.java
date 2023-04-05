@@ -22,4 +22,58 @@ public class Player {
     private Map<String, Integer> playerInventory = new HashMap<>();
     //endregion
 
+    //region Constructors
+    // This constructor will be used when the player is first created.
+    public Player(String playerName, Integer playerHealth, Integer playerPosition, Integer playerScore) {
+        this.playerName = playerName;
+        this.playerHealth = playerHealth;
+        this.playerPosition = playerPosition;
+        this.playerScore = playerScore;
+    }
+    //endregion
+
+    //region Getters
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public Integer getPlayerHealth() {
+        return playerHealth;
+    }
+
+    public Integer getPlayerPosition() {
+        return playerPosition;
+    }
+
+    public Integer getPlayerScore() {
+        return playerScore;
+    }
+
+    public Map<String, Integer> getPlayerInventory() {
+        return playerInventory;
+    }
+    //endregion
+
+    //region Setters
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public void setPlayerHealth(Integer playerHealth) {
+        this.playerHealth = playerHealth;
+    }
+
+    public void setPlayerPosition(Integer playerPosition) {
+        this.playerPosition = playerPosition;
+    }
+
+    public void setPlayerScore(Integer playerScore) {
+        this.playerScore = playerScore;
+    }
+
+    public void setPlayerInventory(Map<String, Integer> playerInventory) {
+        this.playerInventory = playerInventory;
+    }
+    //endregion
+
 }
