@@ -38,5 +38,46 @@ public class Room {
         this.availExits = availExits;
         this.roomLoot = roomLoot;
     }
+    //endregion
+
+    //region Setters
+    protected void setRoomName(String roomDescription) {
+        this.roomDescription = roomDescription;
+    }
+
+    public void setRoomNumber(Integer roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
+    public void setRoomDescription(String roomDescription) {
+        this.roomDescription = roomDescription;
+    }
+
+    public void setAvailExits(Map<String, Integer> availExits) {
+        this.availExits.putAll(availExits);
+    }
+
+    public void setRoomLoot(Map<LootItem, Integer> roomLoot) {
+        this.roomLoot = roomLoot;
+    }
+    //endregion
+
+    //region Getters
+    public Integer getRoomNumber() {
+        return roomNumber;
+    }
+
+    public String getRoomDescription() {
+        return roomDescription;
+    }
+
+    public Map<String, Integer> getAvailExits() {
+        return availExits;
+    }
+
+    public Map<LootItem, Integer> getRoomLoot() {
+        return roomLoot;
+    }
+    //endregion
 
 }
