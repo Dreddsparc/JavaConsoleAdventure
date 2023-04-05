@@ -18,13 +18,25 @@ public class Room {
     private String roomDescription;
 
     // roomExits is a HashMap that will contain the room numbers of the rooms
-    // that are connected to this room.
-    private Map<String, Integer> roomExits = new HashMap<>();
+    // that are connected to this room. HashMap will have 4 entries, one for each
+    // direction. The key will be the direction and the value will be the room
+    private Map<String, Integer> availExits = new HashMap<>();
 
     // roomLoot is a HashMap that will contain the loot items that are in this
     // room. And how many of each item there are.
     private Map<LootItem, Integer> roomLoot = new HashMap<>();
     //endregion
 
+    //region Constructors
+    public Room(){
+
+    }
+
+    public Room(Integer roomNumber, String roomDescription, Map<String, Integer> availExits, Map<LootItem, Integer> roomLoot) {
+        this.roomNumber = roomNumber;
+        this.roomDescription = roomDescription;
+        this.availExits = availExits;
+        this.roomLoot = roomLoot;
+    }
 
 }
