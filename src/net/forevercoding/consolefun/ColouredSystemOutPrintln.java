@@ -2,7 +2,7 @@ package net.forevercoding.consolefun;
 
 public class ColouredSystemOutPrintln {
     public static final String ANSI_RESET  = "\u001B[0m";
-
+    public static final String ANSI_CLS    = "\u001B[2J";
     public static final String ANSI_BLACK  = "\u001B[30m";
     public static final String ANSI_RED    = "\u001B[31m";
     public static final String ANSI_GREEN  = "\u001B[32m";
@@ -52,8 +52,12 @@ public class ColouredSystemOutPrintln {
             ANSI_BRIGHT_BG_BLACK, ANSI_BRIGHT_BG_RED, ANSI_BRIGHT_BG_GREEN, ANSI_BRIGHT_BG_YELLOW,
             ANSI_BRIGHT_BG_BLUE, ANSI_BRIGHT_BG_PURPLE, ANSI_BRIGHT_BG_CYAN, ANSI_BRIGHT_BG_WHITE };
 
-    public static void main(String[] args) {
 
+    // NOTE: for cursor positioning to work, we need to run this from an actual console window rather than an IDE.
+    // from the directory where the class resides
+    // run : java -classpath ../../../ net.forevercoding.consolefun.ColouredSystemOutPrintln
+    public static void main(String[] args) {
+        System.out.println(ANSI_CLS + ANSI_RESET);
         System.out.println("\n  Default text\n");
 
         for (String fg : FOREGROUNDS) {
@@ -62,8 +66,8 @@ public class ColouredSystemOutPrintln {
             System.out.println(ANSI_RESET);
         }
 
-        System.out.println(ANSI_RESET + "\n  Back to default.\n");
-        System.out.println("\u001b[10;25H"+ANSI_BRIGHT_RED + "  Hubba bubba dubba jububba\n");
+//        System.out.println(ANSI_RESET + "\n  Back to default.\n");
+//        System.out.println("\u001b[10;25H"+ANSI_BRIGHT_RED + "  Hubba bubba dubba jububba\n");
     }
 
 }
