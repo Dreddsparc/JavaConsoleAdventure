@@ -1,5 +1,7 @@
 package net.forevercoding.consolefun;
 
+import java.util.concurrent.TimeUnit;
+
 public class Ansi {
     //region ANSI Control
     public static final String ANSI_RESET = "\u001B[0m";
@@ -11,6 +13,14 @@ public class Ansi {
     public static final String ANSI_BLINK = "\u001B[5m";
     public static final String ANSI_REVERSE = "\u001B[7m";
 
+    //endregion
+
+    //region ANSI Positioning Codes
+    private static final String CURSOR_UP = "\033[%dA";
+    private static final String CURSOR_DOWN = "\033[%dB";
+    private static final String CURSOR_FORWARD = "\033[%dC";
+    private static final String CURSOR_BACKWARD = "\033[%dD";
+    private static final String CURSOR_POSITION = "\033[%d;%dH";
     //endregion
 
     //region Foreground Colours
@@ -68,7 +78,41 @@ public class Ansi {
             ANSI_BRIGHT_BG_BLUE, ANSI_BRIGHT_BG_PURPLE, ANSI_BRIGHT_BG_CYAN, ANSI_BRIGHT_BG_WHITE};
     //endregion
 
+    //region Special Strings
+    private static final String SPINNER_FRAMES = "|/-\\";
+    //endregion
+
     //region Methods
+
+    // Set the text to a given color
+    public static void setColor(String color) {
+        System.out.print(color);
+    }
+
+    // Reset the test back to the default color
+    public static void resetColor() {
+        System.out.print(ANSI_RESET);
+    }
+    // Move the cursor up n lines
+    public static void cursorUp(int n) {
+        System.out.printf(CURSOR_UP, n);
+    }
+
+    // Move the cursor down n lines
+    public static void cursorDown(int n) {
+        System.out.printf(CURSOR_DOWN, n);
+    }
+
+    // Move the cursor forward n columns
+    public static void cursorForward(int n) {
+        System.out.printf(CURSOR_FORWARD, n);
+    }
+
+    // Move the cursor backward n columns
+    public static void cursorBackward(int n) {
+        System.out.printf(CURSOR_BACKWARD, n);
+    }
+
     public static void positionCursor(int x, int y) {
         System.out.print("\u001b[" + x + ";" + y + "H");
     }
@@ -82,21 +126,22 @@ public class Ansi {
     // NOTE: for cursor positioning to work, we need to run this from an actual console window rather than an IDE.
     // from the directory where the class resides
     // run : java -classpath ../../../ net.forevercoding.consolefun.ColouredSystemOutPrintln
-    public static void main(String[] args) {
 
-        System.out.println(ANSI_CLS + ANSI_RESET);
-        System.out.println("\n  Default text\n");
-
-        System.out.println(ANSI_BOLD + "  Bold text\n");
-        for (String fg : FOREGROUNDS) {
-            for (String bg : BACKGROUNDS)
-                System.out.print(fg + bg + "  TEST  ");
-            System.out.println(ANSI_RESET);
+    // Print a spinner animation to the console
+    public static void spinner(long duration) throws InterruptedException {
+        long startTime = System.currentTimeMillis();
+        int i = 0;
+        while (System.currentTimeMillis() - startTime < duration) {
+            System.out.print(SPINNER_FRAMES.charAt(i++ % SPINNER_FRAMES.length()));
+            System.out.flush();
+            TimeUnit.MILLISECONDS.sleep(100);
+            cursorBackward(1);
         }
-
-        System.out.println(ANSI_RESET + "\n  Back to default.\n");
-        System.out.println("\u001b[10;25H" + ANSI_BRIGHT_RED + "  Hubba bubba dubba jububba\n");
     }
 
+    public boolean clearScreen() {
+        System.out.println(ANSI_CLS + ANSI_RESET);
+        return true;
+    }
 }
 
